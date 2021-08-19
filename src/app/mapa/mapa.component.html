@@ -1,0 +1,14 @@
+<agm-map [latitude]="latitud" [longitude]="longitud" [zoom]="17" [mapTypeId]="'satellite'" [fitBounds]="true"
+    (mapClick)="onMapClick($event)">
+    <agm-marker [latitude]="latitud" [longitude]="longitud"></agm-marker>
+
+    <agm-marker *ngFor="let estacion of estaciones" [latitude]="estacion.geometry.coordinates[1]"
+        [longitude]="estacion.geometry.coordinates[0]" [agmFitBounds]="true"
+        [iconUrl]="$any({ url: 'https://www.altairapps.com/es/images/apps/icon_santiagobike.png', scaledSize: { width: 40, height: 40} })">
+        <agm-info-window>
+            <h4>{{ estacion.name }}</h4>
+            <p>Bicis disponibles: {{ estacion.dock_bikes }}</p>
+            <p>Plazas libres: {{ estacion.free_bases }}</p>
+        </agm-info-window>
+    </agm-marker>
+</agm-map>
